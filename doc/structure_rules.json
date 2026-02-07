@@ -1,0 +1,52 @@
+[
+  {
+    "id": "REQUIRED_SECTIONS_CHECK",
+    "name": "检查必要章节",
+    "category": "structure",
+    "checker": "deterministic",
+    "match": "document",
+    "condition": {
+      "required_sections": ["目录", "项目概述", "项目背景", "技术方案"]
+    },
+    "error_message": "缺少必要章节",
+    "suggestion": "请补充缺失的必要章节"
+  },
+  {
+    "id": "TOC_BODY_CONSISTENCY",
+    "name": "目录与正文一致性检查",
+    "category": "structure",
+    "checker": "deterministic",
+    "match": "document",
+    "condition": {
+      "check_type": "toc_body_consistency",
+      "check_main_headings": true,
+      "check_sub_headings": true
+    },
+    "error_message": "目录与正文标题不一致",
+    "suggestion": "请确保目录中的所有标题都能在正文中找到对应"
+  },
+  {
+    "id": "HEADING_HIERARCHY_CHECK",
+    "name": "标题层级检查",
+    "category": "structure",
+    "checker": "deterministic",
+    "match": "document",
+    "condition": {
+      "check_level_jumps": true
+    },
+    "error_message": "标题层级跳跃",
+    "suggestion": "请检查标题层级，确保层级连续（如不应从1级跳到3级）"
+  },
+  {
+    "id": "TOC_MISSING",
+    "name": "目录缺失检查",
+    "category": "structure",
+    "checker": "deterministic",
+    "match": "document",
+    "condition": {
+      "require_toc": true
+    },
+    "error_message": "文档中未找到目录",
+    "suggestion": "请添加目录"
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "PAGE_MARGIN_25",
+    "name": "页面边距 2.5cm",
+    "category": "page",
+    "checker": "deterministic",
+    "match": "document",
+    "condition": {"top_mm": 25, "bottom_mm": 25, "left_mm": 25, "right_mm": 25},
+    "fix_action": "set_page_margin",
+    "fix_params": {"top_mm": 25.4, "bottom_mm": 25.4, "left_mm": 31.8, "right_mm": 31.8},
+    "error_message": "页面边距不符合 2.5cm 要求",
+    "suggestion": "请将页面边距设置为上/下/左/右 2.5cm"
+  },
+  {
+    "id": "FONT_BODY_SONGTI",
+    "name": "正文中文字体为宋体，英文字体为 Times New Roman",
+    "category": "font",
+    "checker": "deterministic",
+    "match": "run",
+    "condition": {"chinese_font": "宋体", "english_font": "Times New Roman", "chinese_size_pt": 12, "english_size_pt": 10.5},
+    "fix_action": "set_run_style",
+    "fix_params": {"chinese_font": "宋体", "english_font": "Times New Roman", "size_pt": 12},
+    "error_message": "正文字体或字号不符合规范",
+    "suggestion": "中文正文请使用 宋体 12pt，英文使用 Times New Roman 10.5pt"
+  },
+  {
+    "id": "PARA_INDENT_2CHAR",
+    "name": "段落首行缩进 2 字符",
+    "category": "paragraph",
+    "checker": "deterministic",
+    "match": "paragraph",
+    "condition": {"first_line_indent_chars": 2},
+    "fix_action": "set_paragraph_indent",
+    "fix_params": {"first_line_indent_chars": 2},
+    "error_message": "段落首行缩进不为 2 字符",
+    "suggestion": "请设置段落首行缩进为 2 字符（或相应的厘米值）"
+  },
+  {
+    "id": "HEADING_NUMBER_STYLE",
+    "name": "章节编号为阿拉伯数字 x.y.z",
+    "category": "heading",
+    "checker": "deterministic",
+    "match": "section",
+    "condition": {"number_style": "1.1.1"},
+    "error_message": "章节编号格式不符合要求",
+    "suggestion": "请使用形如 1、1.1、1.1.1 的阿拉伯数字编号格式"
+  },
+  {
+    "id": "FIGURE_CAPTION_POSITION",
+    "name": "图表题注位置要求",
+    "category": "figure",
+    "checker": "deterministic",
+    "match": "figure",
+    "condition": {"caption_position": "below", "caption_prefix": "图"},
+    "error_message": "图题位置或前缀不符合要求",
+    "suggestion": "请将图题放在图下方，且使用前缀“图”并编号"
+  },
+  {
+    "id": "REFERENCE_FORMAT_GB/T801",
+    "name": "参考文献格式（示例）",
+    "category": "reference",
+    "checker": "deterministic",
+    "match": "reference",
+    "condition": {"style": "GB/T 7714"},
+    "error_message": "参考文献格式可能不符合 GB/T 7714",
+    "suggestion": "请检查参考文献格式是否符合 GB/T 7714 标准"
+  },
+  {
+    "id": "PAGE_A4",
+    "name": "纸型为 A4",
+    "category": "page",
+    "checker": "deterministic",
+    "match": "document",
+    "condition": {"paper_name": "A4", "width_mm": 210, "height_mm": 297},
+    "error_message": "纸张大小应为 A4 (297mm×210mm)",
+    "suggestion": "请选择 A4 纸型并设置为纵向"
+  },
+  {
+    "id": "REQUIRED_SECTIONS",
+    "name": "必须包含前置部分",
+    "category": "other",
+    "checker": "deterministic",
+    "match": "document",
+    "condition": {"required": ["title", "abstract", "keywords", "toc", "body", "references"]},
+    "error_message": "论文缺少必备部分（题目/摘要/关键词/目录/正文/参考文献）",
+    "suggestion": "补齐缺失的前置部分"
+  },
+  {
+    "id": "HEADING_STYLES",
+    "name": "标题级别字体与对齐",
+    "category": "heading",
+    "checker": "deterministic",
+    "match": "heading",
+    "condition": {
+      "level1": {"font": "黑体", "size_pt": 16, "alignment": "center", "bold": true},
+      "level2": {"font": "黑体", "size_pt": 14, "alignment": "left", "bold": true},
+      "level3": {"font": "黑体", "size_pt": 12, "indent_first_line_chars": 2}
+    },
+    "fix_action": "set_heading_style",
+    "fix_params": {
+      "level1": {"font": "黑体", "size_pt": 16, "alignment": "center", "bold": true},
+      "level2": {"font": "黑体", "size_pt": 14, "alignment": "left", "bold": true},
+      "level3": {"font": "黑体", "size_pt": 12, "indent_first_line_chars": 2}
+    },
+    "error_message": "标题样式/字号/对齐不符合规范",
+    "suggestion": "请调整标题到指定字体、字号与对齐方式"
+  },
+  {
+    "id": "LINE_SPACING",
+    "name": "正文与公式行间距",
+    "category": "paragraph",
+    "checker": "deterministic",
+    "match": "paragraph",
+    "condition": {"paragraph_line_spacing": 1.2, "equation_line_spacing": 1.5},
+    "error_message": "段落或公式行距不符合规范",
+    "suggestion": "正文行距设为 1.2 倍，公式设为 1.5 倍"
+  },
+  {
+    "id": "CITATION_SUPERSCRIPT",
+    "name": "正文引用标注为上标编号",
+    "category": "other",
+    "checker": "deterministic",
+    "match": "run",
+    "condition": {"citation_style": "superscript"},
+    "error_message": "正文引用未按右上角上标编号标注",
+    "suggestion": "正文引用请使用按序的上标编号"
+  },
+  {
+    "id": "TABLE_FIGURE_FORMAT",
+    "name": "图表题注与编号规范",
+    "category": "figure",
+    "checker": "deterministic",
+    "match": "figure",
+    "condition": {
+      "figure": {"caption_position": "below", "caption_prefix": "图", "chinese_font": "楷体", "english_font": "Times New Roman", "caption_size_pt": 10.5},
+      "table": {"caption_position": "above", "caption_prefix": "表", "chinese_font": "楷体", "english_font": "Times New Roman", "caption_size_pt": 10.5}
+    },
+    "error_message": "图表题注位置/字体/编号不符合规范",
+    "suggestion": "图题放图下方、表题放表上方并按章编号；字体按规范设置"
+  }
+]

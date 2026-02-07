@@ -1,0 +1,506 @@
+/* ========================================
+   文心雕龙·AI - 新中式学术风设计系统
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   CSS 变量系统 - 传统五色与现代设计融合
+   ======================================== */
+:root {
+  /* 传统色彩系统 */
+  --ink-black: #1a1a1a;        /* 墨黑 - 主文字 */
+  --ink-dark: #2d2d2d;         /* 深墨 - 次要文字 */
+  --ink-gray: #6b6b6b;         /* 淡墨 - 辅助文字 */
+  --ink-light: #9a9a9a;        /* 极淡墨 - 禁用/提示 */
+
+  --paper-white: #f7f4ed;      /* 宣纸白 - 主背景 */
+  --paper-warm: #faf8f3;       /* 暖纸 - 卡片背景 */
+  --paper-ivory: #fffbf5;      /* 象牙白 - 强调背景 */
+
+  --cinnabar-red: #c8102e;     /* 朱砂红 - 主强调色 */
+  --cinnabar-dark: #9c0b22;    /* 深朱砂 - Hover 状态 */
+  --cinnabar-light: #e8d5d9;   /* 淡朱砂 - 背景点缀 */
+
+  --bronze-gold: #b8860b;      /* 古铜金 - 重要元素 */
+  --bronze-light: #d4a84b;     /* 浅铜 - 高光 */
+  --bronze-pale: #f5edd7;      /* 淡铜 - 背景 */
+
+  --jade-green: #2d5a4a;       /* 玉石绿 - 成功状态 */
+  --jade-light: #3d7a6a;       /* 浅玉 */
+  --jade-pale: #d7e8e3;        /* 淡玉背景 */
+
+  --indigo-blue: #3d5a80;      /* 靛青 - 信息状态 */
+  --rouge-pink: #d45d79;       /* 胭脂 - 警告状态 */
+
+  /* 间距系统 (8px 基础网格) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* 圆角系统 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* 阴影系统 - 柔和自然 */
+  --shadow-sm: 0 1px 3px rgba(26, 26, 26, 0.05);
+  --shadow-md: 0 4px 12px rgba(26, 26, 26, 0.08);
+  --shadow-lg: 0 8px 24px rgba(26, 26, 26, 0.12);
+  --shadow-xl: 0 16px 48px rgba(26, 26, 26, 0.15);
+
+  /* 过渡动画 */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   基础重置
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--paper-white);
+  color: var(--ink-black);
+  line-height: 1.7;
+  /* 添加宣纸纹理 */
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ========================================
+   字体系统
+   ======================================== */
+.font-heading {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.font-body {
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace;
+}
+
+/* 标题层级 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', serif;
+  font-weight: 700;
+  color: var(--ink-black);
+  line-height: 1.3;
+}
+
+/* ========================================
+   新中式玻璃态效果
+   ======================================== */
+.glass {
+  background: rgba(250, 248, 243, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(184, 134, 11, 0.15);
+}
+
+.glass-strong {
+  background: rgba(255, 251, 245, 0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   传统边框纹样
+   ======================================== */
+.border-traditional {
+  border: 2px solid var(--ink-black);
+  position: relative;
+}
+
+.border-traditional::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 1px solid var(--bronze-gold);
+  pointer-events: none;
+}
+
+/* 双线边框 - 回纹风格 */
+.border-pattern-double {
+  border: 3px double var(--ink-black);
+}
+
+/* 角落装饰 */
+.border-corners {
+  border: 1px solid var(--ink-gray);
+  position: relative;
+}
+
+.border-corners::before,
+.border-corners::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--cinnabar-red);
+}
+
+.border-corners::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.border-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ========================================
+   按钮系统
+   ======================================== */
+/* 主按钮 - 朱砂红印章风格 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--cinnabar-red) 0%, #a00c24 100%);
+  color: white;
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.25);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(200, 16, 46, 0.35);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* 次按钮 - 古铜金边框 */
+.btn-secondary {
+  background: transparent;
+  color: var(--ink-black);
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  border: 2px solid var(--bronze-gold);
+  transition: all var(--transition-base);
+}
+
+.btn-secondary:hover {
+  background: var(--bronze-pale);
+  border-color: var(--bronze-light);
+}
+
+/* 文字按钮 */
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-gray);
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.btn-ghost:hover {
+  color: var(--cinnabar-red);
+  background: var(--cinnabar-light);
+}
+
+/* ========================================
+   卡片系统
+   ======================================== */
+.card {
+  background: var(--paper-warm);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(184, 134, 11, 0.1);
+  transition: all var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(184, 134, 11, 0.2);
+}
+
+.card-traditional {
+  background: var(--paper-warm);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 2px solid var(--ink-black);
+  position: relative;
+  box-shadow: 4px 4px 0 var(--bronze-gold);
+  transition: all var(--transition-base);
+}
+
+.card-traditional:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--bronze-gold);
+}
+
+/* ========================================
+   输入框系统
+   ======================================== */
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--paper-white);
+  border: 1.5px solid var(--ink-gray);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  color: var(--ink-black);
+  transition: all var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--ink-light);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--bronze-gold);
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+}
+
+.input:disabled {
+  background: var(--paper-warm);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ========================================
+   动画系统
+   ======================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* ========================================
+   实用类
+   ======================================== */
+/* 滚动条隐藏 */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 自定义滚动条 - 传统风格 */
+.scrollbar-traditional::-webkit-scrollbar {
+  width: 8px;
+}
+.scrollbar-traditional::-webkit-scrollbar-track {
+  background: var(--paper-warm);
+  border-radius: var(--radius-full);
+}
+.scrollbar-traditional::-webkit-scrollbar-thumb {
+  background: var(--bronze-gold);
+  border-radius: var(--radius-full);
+}
+.scrollbar-traditional::-webkit-scrollbar-thumb:hover {
+  background: var(--bronze-light);
+}
+
+/* Bento 卡片悬停效果 */
+.bento-card {
+  transition: all var(--transition-base);
+}
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 装饰性印章效果 */
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: var(--cinnabar-red);
+  color: white;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.2);
+}
+
+/* 书法笔触装饰 */
+.brush-stroke {
+  position: relative;
+}
+.brush-stroke::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cinnabar-red), var(--bronze-gold), var(--cinnabar-red));
+  border-radius: var(--radius-full);
+}
+
+/* 渐变文字 */
+.text-gradient {
+  background: linear-gradient(135deg, var(--cinnabar-red), var(--bronze-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   状态颜色
+   ======================================== */
+.text-success { color: var(--jade-green); }
+.text-warning { color: var(--rouge-pink); }
+.text-info { color: var(--indigo-blue); }
+
+.bg-success { background: var(--jade-pale); }
+.bg-warning { background: #f5e0e5; }
+.bg-info { background: #e0e8f0; }
+
+/* ========================================
+   响应式
+   ======================================== */
+@media (max-width: 768px) {
+  :root {
+    --space-xl: 24px;
+    --space-2xl: 32px;
+    --space-3xl: 48px;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Document Rule",
+  "type": "object",
+  "required": ["id", "name", "category", "condition"],
+  "properties": {
+    "id": {"type": "string", "description": "唯一规则ID，建议全部大写和下划线"},
+    "name": {"type": "string", "description": "规则名称"},
+    "category": {"type": "string", "enum": ["page","font","paragraph","heading","figure","reference","structure","other"], "description": "规则分类"},
+    "match": {"type": "string", "enum": ["document","section","paragraph","run","style","table","figure","reference"], "description": "规则匹配目标"},
+    "condition": {"type": "object", "description": "规则判断条件（按 category 定义字段）"},
+    "error_message": {"type": "string", "description": "检测到问题时的描述"},
+    "suggestion": {"type": "string", "description": "建议修复方法"},
+    "metadata": {"type": "object", "description": "可选元数据，例如例子或额外标识"},
+    "checker": {"type": "string", "enum": ["deterministic","ai","hybrid"], "description": "检查器类型；deterministic=本地规则判断；ai=调用大模型；hybrid=先本地再AI"},
+    "prompt_template": {"type": "string", "description": "当 checker 为 ai 或 hybrid 时可选的 prompt 模板"},
+    "cost_estimate": {"type": "number", "description": "估算的模型调用成本（可选，用于计费/预算）"},
+    "timeout_sec": {"type": "number", "description": "执行超时时间（秒），当为 ai 时建议设置"},
+    "confidence_threshold": {"type": "number", "description": "AI 返回可信度阈值，低于该值建议人工复核"}
+  }
+}
